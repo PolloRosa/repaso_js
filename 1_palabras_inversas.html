@@ -8,13 +8,11 @@
 </head>
 <body>
     <header>
-        <a href="index.html">Regresar</a>
+        <a href="index.html">&lt;&lt; Regresar</a>
+        <h1>Ejercicio de las palabras inversas</h1>
     </header>
     <main>
-        <br>
-        <br>
         <section>
-            <h1>Ejercicio de las palabras inversas</h1>
             <h2>Descripción</h2>
             <p>
                 Create a function named reverseSpecimenWords that receives observation as its parameter.
@@ -46,18 +44,56 @@
                 Considerar el idioma español, por lo que se debe considerar la letra "ñ" y las vocales acentuadas (á, é, í, ó, ú) como letras válidas.
             </p>
         </section>
-        
+
         <section>
             <h2>Desarrollo del ejercicio:</h2>
-            <p>Observación: <span id="Original"></span></p>
+            <p>
+                Se siguieron los pasos recomendados para resolver el ejercicio: 
+            </p>
+            <ol>
+                <li>Dividir la frase en un arreglo de palabras separadas por espacios en blanco " ".</li>
+                <li>Crear un nuevo arreglo donde ir llenando las palabras con los caracteres invertidos.    </li>
+                <li>Unir el nuevo arreglo con espacios en blanco " " separando cada palabra.</li>
+            </ol>
+            <p>
+                Creando la función <code>reverseSpecimenWords</code> que recibe el parámetro <code>observation</code> y devuelve otra cadena con las palabras invertidas, manteniendo el orden original de las palabras y los signos de puntuación.
+            </p>
+            <p>
+                Se creó una función auxiliar <code>invertirPalabra</code> que recibe una palabra y devuelve la palabra invertida.
+            </p>
+            <p>
+                Para usar la función <code>invertirPalabra</code>, se implementó la lógica para validar cada caracter de cada palabra asegurando el envío de palabras con letras, números y caracteres especiales propios del idioma español: ñ, á, é, í, ó, ú, ü. Así mismo se decidió considerar el guión como un signo de puntación válido por la existencia de palabras compuestas como "vice-presidente" o "semi-automático".
+            </p>
+            <p>
+                Se recorre el arreglo de palabras y en cada iteración se validan los caracteres recorriendo el arreglo de caracteres de la palabra. Si el caracter resulta ser una letra o un número se acumula en una variable. Si se encuentra un signo de puntuación, se corta la acumulación de caracteres, se envía la palabra acumulada a la función <code>invertirPalabra</code> y se agrega el signo de puntuación al final de la palabra invertida. Si no hay acumulación de caracteres, se agrega el signo de puntuación directamente a la nueva palabra.
+            </p>
+            <p>
+                Después del final del bucle de caracteres, si no hubo corte por encontrar un signo de puntuación, se envía la variable de caracteres acumulada a la función <code>invertirPalabra</code> y se agrega el resultado a la nueva palabra.
+            </p>
+            <p>
+                Al final del bucle de palabras, se agrega la nueva palabra al arreglo de resultado.
+            </p>
+            <p>
+                Finalmente, se unen las palabras del arreglo de resultado con espacios en blanco " " y se devuelve la cadena resultante.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Funcionalidad final del ejercicio:</h2>
+            <form>
+                <label for="txtOriginal">Observación:</label>
+                <input type="text" id="txtOriginal" style="width: 80%" placeholder="Ingrese una observación para ser codificada..." />
+                <br><br>
+                <input type="button" value="Codificar" onclick="codificar()" />&nbsp;
+                <input type="button" value="Texto random" onclick="generarRandom()" />&nbsp;
+                <input type="reset" value="Limpiar" onclick="limpiar()" />
+            </form>
             <p>Codificado: <span id="Resultado"></span></p>
         </section>
-        <br>
-        <br>
-        <br>
-        <br>
     </main>
-    <a href="index.html">Regresar</a>
+    <footer>
+        <a href="index.html">&lt;&lt; Regresar</a>
+    </footer>
 <script>
 function reverseSpecimenWords(observation) {
     //1. separar la frase en un arreglo de palabras dividas por espacio en blanco(" ")
@@ -103,7 +139,7 @@ function reverseSpecimenWords(observation) {
                 }
             } else {
                 //si es letra o número se agrega el caracter a la palabra para ser invertida
-                invertir+=car;
+                invertir += car;
             }
         }
 
@@ -126,12 +162,29 @@ function invertirPalabra(palabra) {
     return arrInvertido.join("");
 }
 
-let observacion = "Mal agüero y así!!"; //"¿¿¿Wow.....me salio!!!!"; //"Saludos, mi 'no-querido-amigo'."; 
-document.getElementById("Original").innerHTML = observacion;
+function codificar() {
+    let original = document.getElementById("txtOriginal").value;
+    let resultado = reverseSpecimenWords(original);
+    document.getElementById("Resultado").innerHTML = resultado;
+}
 
-let resultado = reverseSpecimenWords(observacion);
-document.getElementById("Resultado").innerHTML = resultado;
+function limpiar() {
+    document.getElementById("txtOriginal").value = "";
+    document.getElementById("Resultado").innerHTML = "";
+}
 
+function generarRandom() {
+    // Generar una frase aleatoria
+    const frases = [
+        "Mal agüero y así!!",
+        "¿¿¿Wow.....me salio????",
+        "Saludos, mi 'no-querido-amigo'",
+        "\"Estás hablando mmdas, Meri-jein.\"",
+        "¡Qué bonito es el amor!"
+    ];
+    const randomIndex = Math.floor(Math.random() * frases.length);
+    document.getElementById("txtOriginal").value = frases[randomIndex];
+}
 </script>
 </body>
 </html>
