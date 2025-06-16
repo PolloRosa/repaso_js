@@ -1,7 +1,7 @@
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="assets/images/portada2_readme.jpg">
  <source media="(prefers-color-scheme: light)" srcset="assets/images/portada1_readme.jpg">
- <img alt="Portada de una persona estudiando en su laptop" src="assets/images/portada1_readme.jpg">
+ <img alt="Portada de una laptop mostrando código" src="assets/images/portada1_readme.jpg">
 </picture>
 
 # Repaso_JS
