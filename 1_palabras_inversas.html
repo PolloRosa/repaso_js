@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="assets/favicon/favicon.ico">
+    <title>Palabras inversas</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">Regresar</a>
+    </header>
+    <main>
+        <br>
+        <br>
+        <section>
+            <h1>Ejercicio de las palabras inversas</h1>
+            <h2>Descripción</h2>
+            <p>
+                Create a function named reverseSpecimenWords that receives observation as its parameter.
+            </p>
+            <p>
+                As a curious entomologist examining a stricken insect specimen with a nibbed pen, you've decided to encode your observations by reversing the letters in each word. Your task is to create a function that takes a sentence about an insect observation and returns a new sentence where each word's letters are reversed, while maintaining the original word order.
+            </p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li>
+                    <code>observation</code> (string): A sentence describing an insect observation. The sentence may contain letters, numbers, and basic punctuation.
+                </li>
+            </ul>
+            <p>
+                The function should return a string where each word in the original sentence has its letters reversed, but the words remain in the same order.
+            </p>
+            <p>
+                Here's a step-by-step approach to solve this problem:
+            </p>
+            <ol>
+                <li>Split the input string into an array of words.</li>
+                <li>Create a new array where each word is reversed.</li>
+                <li>Join the array of reversed words back into a single string.</li>
+            </ol>
+            <p>
+                Remember to handle punctuation and spaces correctly. Punctuation should remain in its original position relative to the word it's attached to.
+            </p>
+            <p>
+                Considerar el idioma español, por lo que se debe considerar la letra "ñ" y las vocales acentuadas (á, é, í, ó, ú) como letras válidas.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Desarrollo del ejercicio:</h2>
+            <p>Observación: <span id="Original"></span></p>
+            <p>Codificado: <span id="Resultado"></span></p>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+    </main>
+    <a href="index.html">Regresar</a>
+<script>
+function reverseSpecimenWords(observation) {
+    //1. separar la frase en un arreglo de palabras dividas por espacio en blanco(" ")
+    let arrOrdenOriginal = observation.split(" ");
+    
+    //2. crear un nuevo arreglo donde se acumularán las palabras invertidas
+    let arrResultado = [];
+
+    // recorrer el arreglo de palabras
+    for(let i=0; i<arrOrdenOriginal.length; i++){
+        let palabra = arrOrdenOriginal[i];
+
+        //Validar que cada caracter sea una letra o número:
+        // no se invertirán signos de puntuación
+        let arrCaracteres = palabra.split("");
+        let invertir = "";
+        let nuevaPalabra = "";
+        let corte = false;
+        let car;
+
+        // recorrer el arreglo de caracteres y validar cada uno
+        for(let j=0; j<arrCaracteres.length; j++){
+            car = arrCaracteres[j];
+            
+            //si hubo un corte por encontrar signo de puntuación en la iteración anterior
+            // reinicio de la palabra y corte
+            if(corte){
+                invertir = "";
+                corte = false;
+            }
+
+            let respuesta = car.match(/^[a-zA-Z0-9]|[-]|[ñ]|[á-é-í-ó-ú-ü]+$/);
+            //si no es letra o número
+            // corte por encontrar signo de puntuación
+            if(respuesta == null){
+                corte = true;
+                //si hay una palabra acumulada para invertir
+                if(invertir.length > 0) {
+                    nuevaPalabra += invertirPalabra(invertir) + car;
+                } else {
+                    //si no hay acumulación de caracteres, se acumulan los signos de puntuación
+                    nuevaPalabra += car;
+                }
+            } else {
+                //si es letra o número se agrega el caracter a la palabra para ser invertida
+                invertir+=car;
+            }
+        }
+
+        //si no hubo corte
+        if(corte == false) {
+            nuevaPalabra += invertirPalabra(invertir);
+        }
+        //se agrega la nueva palabra al arreglo de resultado
+        arrResultado.push(nuevaPalabra);
+    }
+
+    //3. unir el nuevo arreglo con espacio en blanco
+    return arrResultado.join(" ");
+}
+
+//función para invertir una palabra
+function invertirPalabra(palabra) {
+    const arrLetras = palabra.split("");
+    let arrInvertido = arrLetras.toReversed(); 
+    return arrInvertido.join("");
+}
+
+let observacion = "Mal agüero y así!!"; //"¿¿¿Wow.....me salio!!!!"; //"Saludos, mi 'no-querido-amigo'."; 
+document.getElementById("Original").innerHTML = observacion;
+
+let resultado = reverseSpecimenWords(observacion);
+document.getElementById("Resultado").innerHTML = resultado;
+
+</script>
+</body>
+</html>
