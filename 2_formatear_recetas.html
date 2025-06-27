@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="assets/favicon/favicon.ico">
+    <title>Formatear recetas para hornear</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">&lt;&lt; Regresar</a>
+        <h1>Ejercicio de Formatear recetas para hornear</h1>
+        <h3><small>
+            Nivel: Intermedio<br>
+            Portal: <a href="https://coddy.tech/" target="_blank">Coddy</a><br>
+            Fecha: 19-06-2025
+        </small></h3>
+    </header>
+    <main>
+        <article>
+            <section>
+                <h2>Descripción</h2>
+                <p>
+                    Create a function named <code>bakingRecipeFormatter</code> that receives <code>ingredients</code> and <code>recipeName</code> as its parameters.
+                </p>
+                <p>
+                    The function should format a baking recipe using advanced string formatting and control flow techniques. It will organize the ingredients into groups and present them in a structured, easy-to-read format.
+                </p>
+                <h3>Parámetros</h3>
+                <p>
+                    <ul>
+                        <li>
+                            <code>ingredients</code> (array): An array of strings representing an ingredient with its quantity (e.g., "2 cups flour", "1 tsp salt", "3 eggs").
+                        </li>
+                        <li>
+                            <code>recipeName</code> (string): The name of the recipe.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The function should format the recipe as follows:
+                </p>
+                <ul>
+                    <li>
+                        Start with the recipe name in uppercase, centered, and surrounded by asterisks.
+                    </li>
+                    <li>
+                        List ingredients with bullet points, capitalizing the first letter of each ingredient.
+                    </li>
+                    <li>
+                        Group ingredients into three categories: dry, wet, and other.
+                    </li>
+                    <li>
+                        Use <code>continue</code> statements to categorize ingredients based on keywords (e.g., "flour", "sugar" for dry; "milk", "egg" for wet).
+                    </li>
+                    <li>
+                        Use <code>break</code> statements to limit each group to a maximum of 5 ingredients.
+                    </li>
+                    <li>
+                        Add a special note for any ingredient containing the word "secret".
+                    </li>
+                </ul>
+                <p>
+                    The function returns a formatted string representing the recipe.
+                </p>
+            </section>
+            <section>
+                <h2>Desarrollo del ejercicio</h2>
+                <h3>Ingreso de la información</h3>
+                <p>
+                    El reto en Coddy solo solicitó la función <code>bakingRecipeFormatter</code> por lo que se creó un formulario para el ingreso de los ingredientes y el nombre de la receta, y un botón para formatear la receta.<br>
+                </p>
+                <p>
+                    Se decidió crear una caja de texto con la etiqueta &#60;textarea&#62; para ingresar los ingredientes separados por salto de línea y unirlos en un arreglo para enviarlo al parámetro <code>ingredients</code> de la función <code>bakingRecipeFormatter</code>.
+                </p>
+                <h3>Lógica de la programación</h3>
+                <p>
+                    La función <code>bakingRecipeFormatter</code> recibe un arreglo de ingredientes y el nombre de la receta como fue indicado en el ejercicio.
+                </p>
+                <p>
+                    Para el desarrollo del ejercicio se utilizaron funciones de cadenas de texto y arreglos, con uso de funcionles adicionales a la solicitada para asegurar un código limpio y ordenado.
+                </p>
+                <p>
+                    Se dividió la lógica en 3 etapas, que finalmente concatenan el resultado final de la receta formateada:
+                </p>
+                <ol>
+                    <li>Formateo de la cabecera.</li>
+                    <li>Clasificación de los ingredientes en secos, húmedos y otros.</li>
+                    <li>Formateo de los ingredientes.</li>
+                </ol>
+                <h3>Etapa 1: Formateo de la cabecera</h3>
+                <p>Se creó la función <code>generarCabecera</code> para encargarse únicamente de dar formato al nombre de la receta y retornar la primera parte de la receta.</p>
+                <p>
+                    Parámetros:
+                </p>
+                <ul>
+                    <li>
+                        <code>recipeName</code> (string): el mismo parámetro que la función <code>bakingRecipeFormatter</code> recibe.
+                    </li>
+                    <li>
+                        <code>anchoReceta</code> (number): el ancho de la receta en términos de cantidad de caracteres, se definió como 20 caracteres aunque el ejercicio no lo mencione pero los casos de prueba presentados por Coddy consideraban 20 caracteres como ancho.
+                    </li>
+                </ul>
+                <p>
+                    El principal reto en esta etapa fue centrar el nombre de la receta dentro de un ancho de 20 caracteres.<br>
+                    Los asteriscos fueron agregados al inicio y al final del nombre de la receta usando la función <code>repeat</code> de cadenas de texto y contatenando el resultado con el nombre de la receta formateado. 
+                </p>
+                <p>
+                    Originalmente se consideró 2 situaciones para centrar el nombre de la receta:
+                </p>
+                <ol>
+                    <li>Si la cantidad de caracteres del nombre es menor al ancho de 20 caracteres: también hay 2 situaciones:</li>
+                    <ol>
+                        <li>Si la diferencia entre el ancho de la receta y la longitud del nombre de la receta es par, se obtiene la diferencia, se divide entre 2 y se agrega en forma de espacios en blanco a cada lado del nombre de la receta.</li>
+                        <li>Si la diferencia es impar, se obtiene la diferencia, se divide en 2 redondeando al entero inmediato menor con la función <code>Math.floor</code>, se agrega en forma de espacios en blanco a la izquierda y sumándole 1 espacio en blanco a la derecha del nombre de la receta.</li>
+                    </ol>
+                    <li>Si la cantidad de caracteres del nombre es igual o mayor: se coloca el nombre sin modificaciones ni espacios en blanco adicionales.</li>
+                </ol>
+                <p>
+                    Pero el código no fue aceptado por Coddy y las cadenas resultantes no coincidían con los resultados esperados de los casos de prueba de Coddy.
+                </p>
+                <p>
+                    Después de un breve análisis se comprueba que Coddy espera una lógica diferente.<br>
+                    Funcionalidad final de la función en comparación con la solución original planteada:
+                </p>
+                <ol>
+                    <li>La solución aplica para ambas situaciones sin importar si la cantidad de caracteres del nombre es menor, igual o mayor al ancho de 20 caracteres, pero el ancho de 20 caracteres para los asteriscos se mantiene.</li>
+                    <ol>
+                        <li>Si la diferencia entre el ancho de la receta y la longitud del nombre de la receta es par, se calcula la mitad de la diferencia entre 2, se agrega en forma de espacios en blanco al lado izquierdo del nombre de la receta con la función <code>padStart</code> indicando como parámetro la diferencia más el tamaño del nombre de la receta, y para el lado derecho usando la función <code>padEnd</code> indicando como parámetro el ancho de la receta más el tamaño del nombre de la receta.</li>
+                        <li>Si la diferencia es impar, es similar a cuando es par, usando las funciones <code>padStart</code> y <code>padEnd</code> pero redondeando la mitad de la diferencia al entero inmediato menor con la función <code>Math.floor</code>.</li>
+                    </ol>
+                </ol>
+                <h3>Etapa 2: Clasificación de los ingredientes en secos, húmedos y otros</h3>
+                <p>
+                    También tuvo 2 versiones debido a que el ejercicio especifica el uso de <code>continue</code> y <code>break</code> para clasificar los ingredientes.<br>
+                </p>
+                <p>
+                    En ambas versiones se definieron 2 arreglos con las palabras clave a buscar para ingredientes secos y húmedos, que aunque en el ejercicio se mencionan como ejemplos, se verifica que en los casos de prueba se tomaron como definitivos. 
+                </p>
+                <ul>
+                    <li>Ingredientes secos: flour, sugar.</li>
+                    <li>Ingredientes húmedos: milk, egg, oil.</li>
+                </ul>
+                <p>
+                    Originalmente se usaron las funciones <code>filter</code> para el arreglo <code>ingredients</code> y <code>some</code> para el arreglo de las palabras clave de ingredientes secos y húmedos, para filtrar los ingredientes y clasificarlos en arreglos de los 3 tipos de ingredientes secos, húmedos y otros, para ser impreso.
+                </p>
+                <p>
+                    La funcionalidad final del bloque de código es similar: se usa un bucle <code>for</code> para recorrer el arreglo de ingredientes y se usa las funciones <code>some</code> e <code>includes</code> para verificar si cada ingrediente contiene alguna de las palabras clave de los ingredientes secos o húmedos, que de ser así se agrega al arreglo correspondiente para ser impreso.<br>
+                    Dentro del bucle se usa <code>continue</code> para evitar que el mismo ingrediente sea evaluado para otra categoría de ingrediente si es que ya se clasificó, y si no coincide con las palabras clave de los ingredientes secos y húmedos se clasifica como <em>Otros ingredientes</em> agregándose al arreglo correspondiente.<br> 
+                </p>
+                <h3>Etapa 3: Formateo de los ingredientes</h3>
+                <p>
+                    Se creó la función <code>formatearIngredientes</code> para dar formato a los ingredientes de cada categoría y retornar la segunda parte de la receta.<br>
+                    que recibe un arreglo de ingredientes y un título opcional para la categoría de ingredientes, que por defecto es "Ingredients".<br>
+                </p>
+                <p>
+                    Parámetros:
+                </p>
+                <ul>
+                    <li>
+                        <code>ingredientes</code> (array): un arreglo de ingredientes de una categoría, ya sea secos, húmedos u otros.
+                    </li>
+                    <li>
+                        <code>titulo</code> (string, opcional): el título de la categoría de ingredientes, por defecto es "Ingredients".
+                    </li>
+                </ul>
+                <p>
+                    También tuvo 2 versiones debido a que el ejercicio especifica el uso de <code>break</code> para limitar la cantidad de ingredientes a mostrar por categoría a 5, dado que ya se usó <code>continue</code> en la etapa anterior.
+                </p>
+                <p>
+                    Originalmente se usó la función <code>slice</code> para limitar la cantidad de ingredientes a 5, y la función <code>forEach</code> para recorrer el arreglo de ingredientes y formatearlos.<br>
+                    Dentro del bucle se verifica si el ingrediente contiene la palabra "secret" para agregar una nota especial al final del ingrediente.
+                </p>
+                <p>
+                    La funcionalidad final de la función <code>formatearIngredientes</code> es similar: se usa un bucle <code>for</code> para recorrer el arreglo de ingredientes, donde también se verifica si el ingrediente contiene la palabra "secret" para agregar una nota especial al final del ingrediente.<br>
+                    Se usa <code>break</code> para salir del bucle si ya se han concatenado 5 ingredientes.
+                </p>
+                <h3>Salida de la información</h3>
+                <p>
+                    Finalmente, todo el resultado de la receta formateada se encuentra concatenada en una variable que se retorna al final de la función <code>bakingRecipeFormatter</code>.<br>
+                </p>
+            </section>
+            <section>
+                <h2>Funcionalidad final del ejercicio</h2>
+                <form>
+                    <label for="txtWord1">Ingredientes separados por salto de línea:</label><br>
+                    <textarea id="txtWord1" style="width: 80%" placeholder="Ingresar texto" rows="5"></textarea> 
+                    <br>
+                    <label for="txtWord2">Nombre de la receta:</label>
+                    <input type="text" id="txtWord2" style="width: 80%" placeholder="Ingrese texto">
+                    <br><br>
+                    <input type="button" value="Formatear receta" onclick="formatear()" />&nbsp;
+                    <input type="reset" value="Limpiar" onclick="limpiar()" />
+                </form>
+                <p>
+                    Resultado:&nbsp;
+                    <br><textarea id="Resultado" style="width: 80%" rows="10" readonly></textarea>
+                </p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <a href="index.html">&lt;&lt; Regresar</a>
+    </footer>
+    <script>
+function bakingRecipeFormatter(ingredients, recipeName) {
+    let resultado = "";
+    let anchoReceta = 20; //Ancho de la receta
+    
+    //formatear encabezado de la receta
+    resultado += generarCabecera(recipeName, anchoReceta);
+    
+    //clasificar y formatear ingredientes
+    let secos = ["flour", "sugar"];
+    let humedos = ["milk", "egg", "oil"];
+    
+    //CÓDIGO NO APROBADO POR CODDY porque solicitó usar continue
+    /*let ingredientesSecos = ingredients.filter(ing => {
+        return secos.some(seco => {
+            //verificar si el ingrediente contiene la palabra seca
+            return ing.toLowerCase().match(seco);
+        });
+    });
+    let ingredientesHumedos = ingredients.filter(ing => {
+        return humedos.some(hum => {
+            //verificar si el ingrediente contiene la palabra húmeda
+            return ing.toLowerCase().match(hum);
+        });
+    });
+    //let ingredientesOtros = ingredients.filter(ing => !secos.includes(ing.toLowerCase()) && !humedos.includes(ing.toLowerCase()));
+    let ingredientesOtros = ingredients.filter(ing => {
+        return !secos.concat(humedos).some(item => {
+            //verificar si el ingrediente no contiene ninguna palabra seca o húmeda
+            return ing.toLowerCase().match(item);
+        });
+    });*/
+    let ingredientesSecos = [];
+    let ingredientesHumedos = [];
+    let ingredientesOtros = [];
+    for(let ing of ingredients) {
+        let ingLower = ing.toLowerCase();
+        if(secos.some(seco => ingLower.includes(seco))) {
+            ingredientesSecos.push(ing);
+            continue; //salta al siguiente ingrediente
+        }
+        if(humedos.some(hum => ingLower.includes(hum))) {
+            ingredientesHumedos.push(ing);
+            continue; //salta al siguiente ingrediente
+        }
+        ingredientesOtros.push(ing); //si no es seco ni húmedo, lo agrega a otros ingredientes
+    }
+
+    //formatear ingredientes secos
+    resultado += formatearIngredientes(ingredientesSecos, "Dry Ingredients:");
+    //formatear ingredientes húmedos
+    resultado += formatearIngredientes(ingredientesHumedos, "Wet Ingredients:");
+    //formatear otros ingredientes
+    resultado += formatearIngredientes(ingredientesOtros, "Other Ingredients:");
+
+    return resultado.trim();
+}
+
+function generarCabecera(recipeName, anchoReceta) {
+    //formatear nombre de la receta considerando agregar 20 espacios al nombre de la receta
+    /*if((anchoReceta - recipeName.length) % 2 === 0) { // si la diferencia es par
+        let espacioCentrar = (anchoReceta - recipeName.length) / 2;
+        recipeName = " ".repeat(espacioCentrar) + recipeName + " ".repeat(espacioCentrar);
+    } else { //si la diferencia es impar
+        let espacioCentrar = Math.floor((anchoReceta - recipeName.length) / 2);
+        recipeName = " ".repeat(espacioCentrar) + recipeName + " ".repeat(espacioCentrar + 1);
+    }*/
+    if((anchoReceta - recipeName.length) % 2 === 0) { // si la diferencia es par
+        let espacioCentrar = (anchoReceta - recipeName.length) / 2;
+        recipeName = recipeName.padStart(espacioCentrar + recipeName.length).padEnd(anchoReceta + recipeName.length);
+    } else { //si la diferencia es impar
+        let espacioCentrar = Math.floor((anchoReceta - recipeName.length) / 2);
+        recipeName = recipeName.padStart(espacioCentrar + recipeName.length).padEnd(anchoReceta + recipeName.length);
+    }
+    return "*".repeat(anchoReceta) + "\n" + recipeName.toUpperCase() + "\n" + "*".repeat(anchoReceta) + "\n\n";
+}
+
+function formatearIngredientes(ingredientes, titulo = "Ingredients") {
+    let resultado = "";
+    //si no hay ingredientes devolver cadena vacía
+    if(ingredientes.length > 0) {
+        resultado = titulo + "\n";
+        //solo mostrar los primeros 5 ingredientes o todos
+        //CÓDIGO NO APROBADO POR CODDY porque solicitó usar break
+        /*ingredientes.slice(0, 5).forEach(ing => {
+            if(ing.toLowerCase().includes("secret")) {
+                resultado += "• " + capitalizeFirstLetter(ing) + " (Special secret ingredient!)\n";
+            } else {
+                resultado += "• " + capitalizeFirstLetter(ing) + "\n";
+            }
+        });*/
+        for(let ing of ingredientes) {
+            if(ing.toLowerCase().includes("secret")) {
+                resultado += "• " + capitalizeFirstLetter(ing) + " (Special secret ingredient!)\n";
+            } else {
+                resultado += "• " + capitalizeFirstLetter(ing) + "\n";
+            }
+            //si ya se mostraron 5 ingredientes, salir del bucle, suma 6 con el título
+            if(resultado.split("•").length == 6) {
+                break;
+            }
+        }
+        resultado += "\n";
+    }
+    return resultado;
+}
+
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function formatear() {
+    let word1 = document.getElementById("txtWord1").value.split("\n").map(line => line.trim()).filter(line => line.length > 0);
+    let word2 = document.getElementById("txtWord2").value.trim();
+    let resultado = bakingRecipeFormatter(word1, word2);
+    document.getElementById("Resultado").value = resultado;
+}
+
+function limpiar() {
+    document.getElementById("Resultado").value = "";
+}
+    </script>
+</body>
+</html>

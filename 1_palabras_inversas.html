@@ -10,86 +10,93 @@
     <header>
         <a href="index.html">&lt;&lt; Regresar</a>
         <h1>Ejercicio de las palabras inversas</h1>
+        <h3><small>
+            Nivel: Fácil<br>
+            Portal: <a href="https://coddy.tech/" target="_blank">Coddy</a><br>
+            Fecha: 15-06-2025
+        </small></h3>
     </header>
     <main>
-        <section>
-            <h2>Descripción</h2>
-            <p>
-                Create a function named reverseSpecimenWords that receives observation as its parameter.
-            </p>
-            <p>
-                As a curious entomologist examining a stricken insect specimen with a nibbed pen, you've decided to encode your observations by reversing the letters in each word. Your task is to create a function that takes a sentence about an insect observation and returns a new sentence where each word's letters are reversed, while maintaining the original word order.
-            </p>
-            <h3>Parámetros</h3>
-            <ul>
-                <li>
-                    <code>observation</code> (string): A sentence describing an insect observation. The sentence may contain letters, numbers, and basic punctuation.
-                </li>
-            </ul>
-            <p>
-                The function should return a string where each word in the original sentence has its letters reversed, but the words remain in the same order.
-            </p>
-            <p>
-                Here's a step-by-step approach to solve this problem:
-            </p>
-            <ol>
-                <li>Split the input string into an array of words.</li>
-                <li>Create a new array where each word is reversed.</li>
-                <li>Join the array of reversed words back into a single string.</li>
-            </ol>
-            <p>
-                Remember to handle punctuation and spaces correctly. Punctuation should remain in its original position relative to the word it's attached to.
-            </p>
-            <p>
-                Considerar el idioma español, por lo que se debe considerar la letra "ñ" y las vocales acentuadas (á, é, í, ó, ú) como letras válidas.
-            </p>
-        </section>
+        <article>
+            <section>
+                <h2>Descripción</h2>
+                <p>
+                    Create a function named <code>reverseSpecimenWords</code> that receives observation as its parameter.
+                </p>
+                <p>
+                    As a curious entomologist examining a stricken insect specimen with a nibbed pen, you've decided to encode your observations by reversing the letters in each word. Your task is to create a function that takes a sentence about an insect observation and returns a new sentence where each word's letters are reversed, while maintaining the original word order.
+                </p>
+                <h3>Parámetros</h3>
+                <ul>
+                    <li>
+                        <code>observation</code> (string): A sentence describing an insect observation. The sentence may contain letters, numbers, and basic punctuation.
+                    </li>
+                </ul>
+                <p>
+                    The function should return a string where each word in the original sentence has its letters reversed, but the words remain in the same order.
+                </p>
+                <p>
+                    Here's a step-by-step approach to solve this problem:
+                </p>
+                <ol>
+                    <li>Split the input string into an array of words.</li>
+                    <li>Create a new array where each word is reversed.</li>
+                    <li>Join the array of reversed words back into a single string.</li>
+                </ol>
+                <p>
+                    Remember to handle punctuation and spaces correctly. Punctuation should remain in its original position relative to the word it's attached to.
+                </p>
+                <p>
+                    Considerar el idioma español, por lo que se debe considerar la letra "ñ" y las vocales acentuadas (á, é, í, ó, ú) como letras válidas.
+                </p>
+            </section>
 
-        <section>
-            <h2>Desarrollo del ejercicio:</h2>
-            <p>
-                Se siguieron los pasos recomendados para resolver el ejercicio: 
-            </p>
-            <ol>
-                <li>Dividir la frase en un arreglo de palabras separadas por espacios en blanco " ".</li>
-                <li>Crear un nuevo arreglo donde ir llenando las palabras con los caracteres invertidos.    </li>
-                <li>Unir el nuevo arreglo con espacios en blanco " " separando cada palabra.</li>
-            </ol>
-            <p>
-                Creando la función <code>reverseSpecimenWords</code> que recibe el parámetro <code>observation</code> y devuelve otra cadena con las palabras invertidas, manteniendo el orden original de las palabras y los signos de puntuación.
-            </p>
-            <p>
-                Se creó una función auxiliar <code>invertirPalabra</code> que recibe una palabra y devuelve la palabra invertida.
-            </p>
-            <p>
-                Para usar la función <code>invertirPalabra</code>, se implementó la lógica para validar cada caracter de cada palabra asegurando el envío de palabras con letras, números y caracteres especiales propios del idioma español: ñ, á, é, í, ó, ú, ü. Así mismo se decidió considerar el guión como un signo de puntación válido por la existencia de palabras compuestas como "vice-presidente" o "semi-automático".
-            </p>
-            <p>
-                Se recorre el arreglo de palabras y en cada iteración se validan los caracteres recorriendo el arreglo de caracteres de la palabra. Si el caracter resulta ser una letra o un número se acumula en una variable. Si se encuentra un signo de puntuación, se corta la acumulación de caracteres, se envía la palabra acumulada a la función <code>invertirPalabra</code> y se agrega el signo de puntuación al final de la palabra invertida. Si no hay acumulación de caracteres, se agrega el signo de puntuación directamente a la nueva palabra.
-            </p>
-            <p>
-                Después del final del bucle de caracteres, si no hubo corte por encontrar un signo de puntuación, se envía la variable de caracteres acumulada a la función <code>invertirPalabra</code> y se agrega el resultado a la nueva palabra.
-            </p>
-            <p>
-                Al final del bucle de palabras, se agrega la nueva palabra al arreglo de resultado.
-            </p>
-            <p>
-                Finalmente, se unen las palabras del arreglo de resultado con espacios en blanco " " y se devuelve la cadena resultante.
-            </p>
-        </section>
-        
-        <section>
-            <h2>Funcionalidad final del ejercicio:</h2>
-            <form>
-                <label for="txtOriginal">Observación:</label>
-                <input type="text" id="txtOriginal" style="width: 80%" placeholder="Ingrese una observación para ser codificada..." />
-                <br><br>
-                <input type="button" value="Codificar" onclick="codificar()" />&nbsp;
-                <input type="button" value="Texto random" onclick="generarRandom()" />&nbsp;
-                <input type="reset" value="Limpiar" onclick="limpiar()" />
-            </form>
-            <p>Codificado: <span id="Resultado"></span></p>
-        </section>
+            <section>
+                <h2>Desarrollo del ejercicio</h2>
+                <p>
+                    Se siguieron los pasos recomendados para resolver el ejercicio: 
+                </p>
+                <ol>
+                    <li>Dividir la frase en un arreglo de palabras separadas por espacios en blanco " ".</li>
+                    <li>Crear un nuevo arreglo donde ir llenando las palabras con los caracteres invertidos.    </li>
+                    <li>Unir el nuevo arreglo con espacios en blanco " " separando cada palabra.</li>
+                </ol>
+                <p>
+                    Creando la función <code>reverseSpecimenWords</code> que recibe el parámetro <code>observation</code> y devuelve otra cadena con las palabras invertidas, manteniendo el orden original de las palabras y los signos de puntuación.
+                </p>
+                <p>
+                    Se creó una función auxiliar <code>invertirPalabra</code> que recibe una palabra y devuelve la palabra invertida.
+                </p>
+                <p>
+                    Para usar la función <code>invertirPalabra</code>, se implementó la lógica para validar cada caracter de cada palabra asegurando el envío de palabras con letras, números y caracteres especiales propios del idioma español: ñ, á, é, í, ó, ú, ü. Así mismo se decidió considerar el guión como un signo de puntación válido por la existencia de palabras compuestas como "vice-presidente" o "semi-automático".
+                </p>
+                <p>
+                    Se recorre el arreglo de palabras y en cada iteración se validan los caracteres recorriendo el arreglo de caracteres de la palabra. Si el caracter resulta ser una letra o un número se acumula en una variable. Si se encuentra un signo de puntuación, se corta la acumulación de caracteres, se envía la palabra acumulada a la función <code>invertirPalabra</code> y se agrega el signo de puntuación al final de la palabra invertida. Si no hay acumulación de caracteres, se agrega el signo de puntuación directamente a la nueva palabra.
+                </p>
+                <p>
+                    Después del final del bucle de caracteres, si no hubo corte por encontrar un signo de puntuación, se envía la variable de caracteres acumulada a la función <code>invertirPalabra</code> y se agrega el resultado a la nueva palabra.
+                </p>
+                <p>
+                    Al final del bucle de palabras, se agrega la nueva palabra al arreglo de resultado.
+                </p>
+                <p>
+                    Finalmente, se unen las palabras del arreglo de resultado con espacios en blanco " " y se devuelve la cadena resultante.
+                </p>
+            </section>
+            
+            <section>
+                <h2>Funcionalidad final del ejercicio</h2>
+                <form>
+                    <label for="txtOriginal">Observación:</label>
+                    <input type="text" id="txtOriginal" style="width: 80%" placeholder="Ingrese una observación para ser codificada..." />
+                    <br><br>
+                    <input type="button" value="Codificar" onclick="codificar()" />&nbsp;
+                    <input type="button" value="Texto random" onclick="generarRandom()" />&nbsp;
+                    <input type="reset" value="Limpiar" onclick="limpiar()" />
+                </form>
+                <p>Codificado: <span id="Resultado"></span></p>
+            </section>
+        </article>
     </main>
     <footer>
         <a href="index.html">&lt;&lt; Regresar</a>
